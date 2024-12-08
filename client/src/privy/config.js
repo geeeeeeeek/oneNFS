@@ -1,7 +1,7 @@
 import { incoNetwork } from "./chains";
 
 export const privyConfig = {
-  appId: "cltn4pfm807ld12sf83bqr3iy",
+  appId: "clz007cw406bz3iq8dwolge41",
   config: {
     logo: "https://your.logo.url",
     appearance: { theme: "dark" },
