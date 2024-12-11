@@ -1,7 +1,16 @@
 import { PauseIcon, PlayIcon } from "lucide-react";
+import { GiNextButton } from "react-icons/gi";
+import { GiPreviousButton } from "react-icons/gi";
+import { FaShuffle } from "react-icons/fa6";
+import { FaRepeat } from "react-icons/fa6";
 import { useEffect, useRef, useState } from "react";
+import { audioTracks } from "@/utils/dummy";
 
-export default function BottomAudioPlayer({ url = "/audio/sample-9s.mp3" }) {
+export default function BottomAudioPlayer({
+  url,
+  musicPlayer,
+  setMusicPlayer,
+}) {
   const audioRef = useRef(null);
   const [playing, setPlaying] = useState(false);
   const [currentTime, setCurrentTime] = useState(0);
@@ -9,6 +18,10 @@ export default function BottomAudioPlayer({ url = "/audio/sample-9s.mp3" }) {
 
   useEffect(() => {
     const audio = audioRef.current;
+    setCurrentTime(0);
+    setPlaying(false);
+    audioRef.current.play();
+    setPlaying(true);
 
     const handleLoadedMetadata = () => {
       setDuration(audio.duration);
@@ -21,6 +34,7 @@ export default function BottomAudioPlayer({ url = "/audio/sample-9s.mp3" }) {
     const handleEnded = () => {
       setPlaying(false);
       setCurrentTime(0);
+      handleNext("next");
     };
 
     if (audio) {
@@ -38,6 +52,23 @@ export default function BottomAudioPlayer({ url = "/audio/sample-9s.mp3" }) {
     };
   }, [url]);
 
+  const handleNext = (type) => {
+    let nextIndex = musicPlayer.index;
+    if (type === "next") nextIndex = nextIndex + 1;
+    else nextIndex = nextIndex - 1;
+
+    if (nextIndex < 0) nextIndex = audioTracks.length - 1;
+    if (nextIndex >= audioTracks.length) nextIndex = 0;
+
+    setMusicPlayer({ ...musicPlayer, index: nextIndex });
+    setCurrentTime(0);
+    setPlaying(false);
+
+    setTimeout(() => {
+      audioRef.current.play();
+      setPlaying(true);
+    }, 50);
+  };
   const handlePlayPause = () => {
     const audio = audioRef.current;
     if (playing) {
@@ -65,7 +96,7 @@ export default function BottomAudioPlayer({ url = "/audio/sample-9s.mp3" }) {
 
   return (
     <div className="px-4 py-2 w-full flex items-center justify-between gap-3">
-      <audio ref={audioRef} src={url} />
+      <audio key={url} ref={audioRef} src={url} />
 
       <div className="controls flex items-center gap-2">
         <button
@@ -94,18 +125,22 @@ export default function BottomAudioPlayer({ url = "/audio/sample-9s.mp3" }) {
       </div>
 
       <div className="flex items-center gap-2">
-        <button>
-          <img src="/icons-dark/shuffle-icon.png" className="w-6 h-6" />
-        </button>
-        <button>
-          <img src="/icons-dark/previous-icon.png" className="w-6 h-6" />
-        </button>
-        <button>
-          <img src="/icons-dark/next-icon.png" className="w-6 h-6" />
-        </button>
-        <button>
-          <img src="/icons-dark/loop-icon.png" className="w-6 h-6" />
-        </button>
+        <FaShuffle
+          onClick={() => handleNext("shuffle")}
+          className="cursor-pointer"
+        />
+        <GiPreviousButton
+          onClick={() => handleNext("previous")}
+          className="cursor-pointer"
+        />
+        <GiNextButton
+          onClick={() => handleNext("next")}
+          className="cursor-pointer"
+        />
+        <FaRepeat
+          onClick={() => handleNext("repeat")}
+          className="cursor-pointer"
+        />
       </div>
     </div>
   );

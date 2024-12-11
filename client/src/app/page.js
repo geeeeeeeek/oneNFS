@@ -4,11 +4,14 @@ import Loader from "@/components/loader";
 import { ResizableComponent } from "@/components/resizable";
 import { audioTracks } from "@/utils/dummy";
 import { usePrivy, useWallets } from "@privy-io/react-auth";
-import { Loader2 } from "lucide-react";
-import React from "react";
-import { MdSkipNext } from "react-icons/md";
+import React, { useState } from "react";
 
 const Page = () => {
+  const [musicPlayer, setMusicPlayer] = useState({
+    isPlaying: false,
+    index: 0,
+  });
+  const [selectedMode, setSelectedMode] = useState("songs");
   const { ready } = usePrivy();
   const { wallets } = useWallets();
   const w0 = wallets[0];
@@ -20,22 +23,38 @@ const Page = () => {
     );
   return (
     <div className="h-screen overflow-hidden">
-      <ResizableComponent w0={w0} />
+      <ResizableComponent
+        w0={w0}
+        musicPlayer={musicPlayer}
+        setMusicPlayer={setMusicPlayer}
+        selectedMode={selectedMode}
+        setSelectedMode={setSelectedMode}
+      />
       <div className="fixed w-full bottom-0 border-t p-4 bg-backgroundOpac backdrop-blur-md flex items-center justify-between">
         <div className="flex gap-3 items-center">
           <img
-            src={audioTracks[0].cover}
+            src={
+              audioTracks[musicPlayer.index].cover
+                ? audioTracks[musicPlayer.index].cover
+                : audioTracks[0].cover
+            }
             alt="cover"
             className="w-12 h-12 rounded-md"
           />
           <div>
-            <p className="font-semibold">{audioTracks[0].title}</p>
-            <p className="text-sm">{audioTracks[0].artist}</p>
+            <p className="font-semibold">
+              {audioTracks[musicPlayer.index].title}
+            </p>
+            <p className="text-sm">{audioTracks[musicPlayer.index].artist}</p>
           </div>
         </div>
         <div className="w-[36rem] h-full">
           <div>
-            <BottomAudioPlayer />
+            <BottomAudioPlayer
+              url={audioTracks[musicPlayer.index].soundUri}
+              musicPlayer={musicPlayer}
+              setMusicPlayer={setMusicPlayer}
+            />
           </div>
         </div>
         <div></div>
@@ -45,3 +64,19 @@ const Page = () => {
 };
 
 export default Page;
+
+const MusicList = ({ audioTracks, musicPlayer, setMusicPlayer }) => {
+  return (
+    <div className="flex gap-3 items-center">
+      <img
+        src={audioTracks[musicPlayer.index].cover}
+        alt="cover"
+        className="w-12 h-12 rounded-md"
+      />
+      <div>
+        <p className="font-semibold">{audioTracks[musicPlayer.index].title}</p>
+        <p className="text-sm">{audioTracks[musicPlayer.index].artist}</p>
+      </div>
+    </div>
+  );
+};
