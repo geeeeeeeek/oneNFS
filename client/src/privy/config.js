@@ -1,4 +1,4 @@
-import { incoNetwork } from "./chains";
+import { polygonAmoy } from "./chains";
 
 export const privyConfig = {
   appId: "clz007cw406bz3iq8dwolge41",
@@ -10,8 +10,8 @@ export const privyConfig = {
       walletList: ["metamask", "detected_wallets", "rainbow"],
       theme: "dark",
     },
-    defaultChain: incoNetwork,
-    supportedChains: [incoNetwork],
+    defaultChain: polygonAmoy,
+    supportedChains: [polygonAmoy],
     embeddedWallets: {
       createOnLogin: "users-without-wallets",
     },

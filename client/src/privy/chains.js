@@ -1,52 +1,52 @@
 import { toast } from "sonner";
 
-export const chainsName = { inco: "Inco" };
+export const chainsName = { amoy: "Amoy" };
 
-export const incoNetwork = {
-  id: 9090,
-  network: "Inco Gentry Testnet",
-  name: "INCO",
+export const polygonAmoy = {
+  id: 80002,
+  network: "Polygon Amoy Testnet",
+  name: "Amoy",
   nativeCurrency: {
-    name: "INCO",
-    symbol: "INCO",
+    name: "MATIC",
+    symbol: "MATIC",
     decimals: 18,
   },
   rpcUrls: {
     default: {
-      http: ["https://testnet.inco.org/"],
+      http: ["https://rpc-amoy.polygon.technology/"],
     },
     public: {
-      http: ["https://testnet.inco.org/"],
+      http: ["https://rpc-amoy.polygon.technology/"],
     },
   },
   blockExplorers: {
     default: {
       name: "Explorer",
-      url: "https://explorer.testnet.inco.org",
+      url: "https://amoy.polygonscan.com/",
     },
   },
 };
 
-export async function switchToIncoNetwork(w0, setter) {
+export async function switchToPolygonAmoy(w0, setter) {
   try {
     const provider = await w0?.getEthersProvider();
     const res = await provider?.send("wallet_addEthereumChain", [
       {
-        chainId: "0x2382",
-        chainName: "Inco Gentry Testnet",
+        chainId: "80002",
+        chainName: "Polygon Amoy Testnet",
         nativeCurrency: {
-          name: "INCO",
-          symbol: "INCO",
+          name: "MATIC",
+          symbol: "MATIC",
           decimals: 18,
         },
-        rpcUrls: ["https://testnet.inco.org/"],
-        blockExplorerUrls: ["https://explorer.testnet.inco.org"],
+        rpcUrls: ["https://rpc-amoy.polygon.technology/"],
+        blockExplorerUrls: ["https://amoy.polygonscan.com/"],
       },
     ]);
 
     const network = await provider.detectNetwork();
-    if (network.chainId === 9090) {
-      setter(chainsName.inco);
+    if (network.chainId === 80002) {
+      setter(chainsName.amoy);
     }
   } catch (error) {
     console.log(error?.message);
