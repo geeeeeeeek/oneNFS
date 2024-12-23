@@ -3,13 +3,26 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon src/index.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "description": "",
   "dependencies": {
-    "express": "^4.19.2"
+    "@urql/core": "^5.0.5",
+    "axios": "^1.7.3",
+    "cookie-parser": "^1.4.6",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "ethers": "^5.7.2",
+    "express": "^4.19.2",
+    "fhevmjs": "^0.4.0-3",
+    "multer": "^1.4.5-lts.1",
+    "node": "^20.16.0",
+    "node-fetch": "^3.3.2",
+    "nodemon": "^3.1.4",
+    "pm2": "^5.4.2"
   }
 }

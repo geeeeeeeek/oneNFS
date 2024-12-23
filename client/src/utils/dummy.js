@@ -9,6 +9,18 @@ export const audioTracks = [
     cover: getRandomImageUri(),
   },
   {
+    title: "Peaceful Ambience",
+    artist: "Ownsound",
+    soundUri: "/audio/sample-9s.mp3",
+    cover: getRandomImageUri(),
+  },
+  {
+    title: "Peaceful Ambience",
+    artist: "Ownsound",
+    soundUri: "/audio/sample-9s.mp3",
+    cover: getRandomImageUri(),
+  },
+  {
     title: "Rainy Day Meditation",
     artist: "Ownsound",
     soundUri: "/audio/sample-1s.mp3",
@@ -26,6 +38,7 @@ export const playlists = [
   {
     name: "Relaxation Sounds",
     description: "Soothing sounds to help you relax and unwind.",
+    creator: "John Doe",
     image: getRandomImageUri(),
     tracks: [
       {
@@ -57,6 +70,7 @@ export const playlists = [
   {
     name: "Nature Sounds",
     description: "Immerse yourself in the sounds of nature.",
+    creator: "Jane Smith",
     image: getRandomImageUri(),
     tracks: [
       {
@@ -88,6 +102,7 @@ export const playlists = [
   {
     name: "Instrumental Calm",
     description: "Relaxing instrumental tracks to help you focus.",
+    creator: "Alex Johnson",
     image: getRandomImageUri(),
     tracks: [
       {

@@ -2,6 +2,8 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/theme/theme-provider";
 import PrivyWrapper from "@/privy/privyProvider";
+import { Toaster } from "sonner";
+import ReduxProvider from "@/redux/redux-provider";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -15,9 +17,12 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body className={inter.className}>
         <PrivyWrapper>
-          <ThemeProvider attribute="class" defaultTheme="light">
-            {children}
-          </ThemeProvider>
+          <ReduxProvider>
+            <ThemeProvider attribute="class" defaultTheme="light">
+              {children}
+              <Toaster />
+            </ThemeProvider>
+          </ReduxProvider>
         </PrivyWrapper>
       </body>
     </html>
