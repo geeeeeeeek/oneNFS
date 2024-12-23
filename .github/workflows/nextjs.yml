@@ -2,11 +2,7 @@ name: Build Next.js Project
 
 on:
   push:
-    branches:
-      - dev # 替换为您的主分支名称，比如 "master" 或 "main"
-  pull_request:
-    branches:
-      - dev # 替换为您的主分支名称，比如 "master" 或 "main"
+    branches: ["dev"]
 
 jobs:
   build:
