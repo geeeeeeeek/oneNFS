@@ -24,8 +24,8 @@ app.use(
 
 const allowedIps = [
   "http://localhost:3000",
-  "https://ownsound.xyz/",
-  "https://ownsound-three.vercel.app",
+  "https://onenfs.github.io/",
+  "https://onenfs.vercel.app",
 ];
 
 app.use(
