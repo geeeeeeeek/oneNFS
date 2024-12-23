@@ -1,6 +1,7 @@
 /** @type {import('next').NextConfig} */
 const API_URL = process.env.API_URL;
 const nextConfig = {
+  output: 'export',
   reactStrictMode: false,
   env: {
     NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME: "da9h8exvs",
