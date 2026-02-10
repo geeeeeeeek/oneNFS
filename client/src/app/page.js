@@ -44,11 +44,11 @@ const Page = () => {
         <footer className="absolute bottom-3.5 mx-auto flex items-center gap-[0.5ch] text-center text-muted-foreground">
           <span>Powered by</span>
           <Link
-            href="https://qoneqt.com/"
+            href="https://github.com/geeeeeeeek/oneNFS"
             target="_blank"
             className="group flex items-center text-primary font-semibold gap-[0.5ch] underline-offset-4 hover:underline"
           >
-            Qoneqt.
+            oneNFS.
           </Link>
         </footer>
       </div>
